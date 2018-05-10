@@ -10,6 +10,7 @@ ROI_y = 80
 ROI_ymax = 150
 width = 638
 height = 360
+color = (234, 148, 33)
 
 video = cv2.VideoCapture(video_file)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -54,8 +55,8 @@ while True:
         rect = cv2.minAreaRect(cnt)
         box = cv2.boxPoints(rect)
         box = np.int0(box)
-        fire = cv2.drawContours(frame, [box], 0, (0,0,255), 2)
-        cv2.putText(frame,'Fire Detected!', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 2)
+        fire = cv2.drawContours(frame, [box], 0, color, 2)
+        cv2.putText(frame,'Fire Detected!', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
         cv2.imshow("Fire Detection", fire)
 
     cv2.imshow("mask", mask)
