@@ -4,10 +4,10 @@ import os
 
 video_file = "field.mp4"
 image_dir = "./images"
-ROI_x = 250
-ROI_xmax = 280
-ROI_y = 80
-ROI_ymax = 150
+ROI_x = 280
+ROI_xmax = 600
+ROI_y = 150
+ROI_ymax = 350
 width = 638
 height = 360
 color = (234, 148, 33)
@@ -22,14 +22,14 @@ while True:
         break
     i += 1
     print(i)
-    if i<965:
+    if i<350:
         continue
 
     blur = cv2.GaussianBlur(frame, (21, 21), 0)
     hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
 
     lower = [5, 50, 50]
-    upper = [255, 255, 255]
+    upper = [6, 255, 255]
     lower = np.array(lower, dtype="uint8")
     upper = np.array(upper, dtype="uint8")
     mask = cv2.inRange(hsv, lower, upper)
@@ -64,7 +64,7 @@ while True:
     cv2.imshow("original", frame)
     out.write(frame)
 
-    if i > 1730:
+    if i > 945:
         break
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
